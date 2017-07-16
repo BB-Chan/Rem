@@ -25,6 +25,7 @@ namespace Rem
         public MainPage()
         {
             this.InitializeComponent();
+
         }
     }
 }
