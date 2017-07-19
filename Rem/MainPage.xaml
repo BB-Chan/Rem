@@ -169,15 +169,18 @@
         </Style>
     </Page.Resources>
 
+    <Grid x:Name="Grid" Background="#FF1D1E23" Margin="0,40,0,0" HorizontalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2.5*"/>
+        </Grid.ColumnDefinitions>
 
-    <Grid x:Name="Grid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-        <Grid x:Name="titlebar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="950" Background="#FF333541" Height="40"/>
-        <ScrollViewer HorizontalAlignment="Left" Height="560" Margin="165,40,0,0" VerticalAlignment="Top" Width="275" Background="#FF1D1E23" BorderBrush="#FF1D1E23" BorderThickness="0,2,0,0"/>
-        <ScrollViewer HorizontalAlignment="Left" Height="560" Margin="440,40,0,0" VerticalAlignment="Top" Width="360" Background="#FF35353D" BorderBrush="#FF35353D" BorderThickness="0,2,0,0"/>
-        <StackPanel HorizontalAlignment="Left" Height="560" Margin="0,40,0,0" VerticalAlignment="Top" Width="165" Background="#FF2A2B30" BorderBrush="#FF2A2B30" BorderThickness="0,2,0,0">
-            <StackPanel HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Width="165"/>
-        </StackPanel>
-        <TextBox x:Name="searchBox" HorizontalAlignment="Left" Margin="165,5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Background="#FF2B2B33" Height="17" BorderBrush="#FF1D1E23" Width="120"  Foreground="White" PlaceholderText="Search accounts" FontSize="14" FontStyle="Italic" Style="{StaticResource TextBoxStyle1}"/>
+        <Grid x:Name="titlebar" VerticalAlignment="Top" Background="#FF333541" Height="40" RenderTransformOrigin="0.5,0" Margin="0,-40,0,0" Grid.ColumnSpan="3">
+            <TextBox x:Name="searchBox" HorizontalAlignment="Left" Margin="145,5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Background="#FF2B2B33" Height="17" BorderBrush="#FF1D1E23" Width="180"  Foreground="White" PlaceholderText="Search accounts" FontSize="14" FontStyle="Italic" Style="{StaticResource TextBoxStyle1}"/>
+        </Grid>
+        <Grid Name="categories" Grid.Column="0" Background="#FF2A2B30"/>
+        <ScrollViewer Name="accountList" Grid.Column="1"/>
+        <ScrollViewer Name="infoList" Grid.Column="2" Background="#FF2A2B30"/>
     </Grid>
 </Page>
