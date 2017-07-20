@@ -41,5 +41,10 @@ namespace Rem
             titleBar.ButtonForegroundColor = Colors.White;
             titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
         }
+
+        private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

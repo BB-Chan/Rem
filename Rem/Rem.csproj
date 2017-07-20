@@ -108,14 +108,21 @@
     <None Include="Rem_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\buttons\add_hover.png" />
+    <Content Include="Assets\buttons\add_press.png" />
+    <Content Include="Assets\buttons\add_release.png" />
+    <Content Include="Assets\icons dark theme\bank.png" />
+    <Content Include="Assets\icons dark theme\bank2.png" />
+    <Content Include="Assets\icons dark theme\cards.png" />
+    <Content Include="Assets\icons dark theme\edit.png" />
+    <Content Include="Assets\icons dark theme\mail.png" />
+    <Content Include="Assets\icons dark theme\password.png" />
+    <Content Include="Assets\icons dark theme\purse.png" />
+    <Content Include="Assets\icons dark theme\settings.png" />
+    <Content Include="Assets\icons dark theme\trash.png" />
+    <Content Include="Assets\icons dark theme\utilities.png" />
+    <Content Include="Assets\icons dark theme\wallet.png" />
     <Content Include="Properties\Default.rd.xml" />
-    <Content Include="Assets\LockScreenLogo.scale-200.png" />
-    <Content Include="Assets\SplashScreen.scale-200.png" />
-    <Content Include="Assets\Square150x150Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
-    <Content Include="Assets\StoreLogo.png" />
-    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

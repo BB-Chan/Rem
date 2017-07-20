@@ -5,7 +5,7 @@
     xmlns:local="using:Rem"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" Width="800" Height="600" Background="Black">
+    mc:Ignorable="d" Width="Auto" Height="Auto" Background="Black">
     <Page.Resources>
         <Style x:Key="TextBoxStyle1" TargetType="TextBox">
             <Setter Property="MinWidth" Value="{ThemeResource TextControlThemeMinWidth}"/>
@@ -112,13 +112,13 @@
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlBorderBrushPointerOver}"/>
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="BorderElement">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlBackgroundPointerOver}"/>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#FF424451"/>
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="PlaceholderTextContentPresenter">
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlPlaceholderForegroundPointerOver}"/>
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentElement">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlForegroundPointerOver}"/>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="White"/>
                                             </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualState>
@@ -128,13 +128,13 @@
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlPlaceholderForegroundFocused}"/>
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="BorderElement">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlBackgroundFocused}"/>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#FF424451"/>
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="BorderElement">
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlBorderBrushFocused}"/>
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentElement">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlForegroundFocused}"/>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="White"/>
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="RequestedTheme" Storyboard.TargetName="ContentElement">
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="Light"/>
@@ -169,18 +169,59 @@
         </Style>
     </Page.Resources>
 
-    <Grid x:Name="Grid" Background="#FF1D1E23" Margin="0,40,0,0" HorizontalAlignment="Stretch">
+    <Grid x:Name="MainLayoutGrid" Background="#FF2A2B30" Margin="0,40,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="2.5*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid x:Name="titlebar" VerticalAlignment="Top" Background="#FF333541" Height="40" RenderTransformOrigin="0.5,0" Margin="0,-40,0,0" Grid.ColumnSpan="3">
-            <TextBox x:Name="searchBox" HorizontalAlignment="Left" Margin="145,5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Background="#FF2B2B33" Height="17" BorderBrush="#FF1D1E23" Width="180"  Foreground="White" PlaceholderText="Search accounts" FontSize="14" FontStyle="Italic" Style="{StaticResource TextBoxStyle1}"/>
+        <Grid x:Name="CategoryLayout" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="173*"/>
+                <RowDefinition Height="35*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Background="#FF2A2B30" Grid.Row="0" Margin="0,0,0,10">
+                <TextBlock Text="Categories" Height="20" Margin="10,10,0,0" FontSize="16" FontWeight="Bold" FontFamily="MS UI Gothic" Foreground="#FFC7C7C7"/>
+                <Grid Name="categoryGrid" Height="255" Margin="10,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40*"/>
+                        <ColumnDefinition Width="289*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Column="0" Grid.Row="0" Source="Assets/icons dark theme/password.png" Opacity="0.5" Margin="0,3" VerticalAlignment="Center" Height="25"/>
+                    <Image Grid.Column="0" Grid.Row="1" Source="Assets/icons dark theme/mail.png" Opacity="0.5" Margin="0,3" VerticalAlignment="Center" Height="25"/>
+                    <Image Grid.Column="0" Grid.Row="2" Source="Assets/icons dark theme/cards.png" Opacity="0.5" Margin="0,3" VerticalAlignment="Center" Height="25"/>
+                    <Image Grid.Column="0" Grid.Row="3" Source="Assets/icons dark theme/bank.png" Opacity="0.5" Margin="0,3" VerticalAlignment="Center" Height="25"/>
+                    <Image Grid.Column="0" Grid.Row="4" Source="Assets/icons dark theme/utilities.png" Opacity="0.5" Margin="0,3" VerticalAlignment="Center" Height="25"/>
+
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text=" Passwords" Foreground="#FFC7C7C7" Margin="0" FontSize="12" Height="30" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text=" Mail" Foreground="#FFC7C7C7" Margin="0" FontSize="12" VerticalAlignment="Center" Height="30"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Text=" Cards" Foreground="#FFC7C7C7" Margin="0" FontSize="12" VerticalAlignment="Center" Height="30"/>
+                    <TextBlock Grid.Column="1" Grid.Row="3" Text=" Banking" Foreground="#FFC7C7C7" Margin="0" FontSize="12" VerticalAlignment="Center" Height="30"/>
+                    <TextBlock Grid.Column="1" Grid.Row="4" Text=" Utilities" Foreground="#FFC7C7C7" Margin="0" FontSize="12" VerticalAlignment="Center" Height="30"/>
+
+                </Grid>
+            </StackPanel>
+            <Button x:Name="button" Content="" HorizontalAlignment="Left" Margin="10,0,0,10" Grid.Row="1" VerticalAlignment="Bottom" Height="30" Width="30">
+                <Button.Background>
+                    <ImageBrush Stretch="Fill" ImageSource="Assets/buttons/add_release.png"/>
+                </Button.Background>
+            </Button>
+
         </Grid>
-        <Grid Name="categories" Grid.Column="0" Background="#FF2A2B30"/>
-        <ScrollViewer Name="accountList" Grid.Column="1"/>
-        <ScrollViewer Name="infoList" Grid.Column="2" Background="#FF2A2B30"/>
+        <Grid x:Name="titlebar" VerticalAlignment="Top" Background="#FF333541" Height="40" RenderTransformOrigin="0.5,0" Margin="0,-40,0,0" Grid.ColumnSpan="3"/>
+
+        <ScrollViewer x:Name="accountList" Grid.Column="1" Background="#FF1D1E23"/>
+        <ScrollViewer x:Name="infoList" Grid.Column="2" Background="#FF2A2B30"/>
+        <TextBox x:Name="searchBox"  Margin="0,-35,0,0" TextWrapping="Wrap" Text=""  Background="#FF2B2B33" Height="5" BorderBrush="#FF1D1E23" Width="180"  Foreground="White" PlaceholderText="Search accounts" FontSize="14" FontStyle="Italic" Style="{StaticResource TextBoxStyle1}" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" TextChanged="searchBox_TextChanged"/>
     </Grid>
 </Page>
