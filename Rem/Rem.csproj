@@ -111,6 +111,9 @@
     <Content Include="Assets\buttons\add_hover.png" />
     <Content Include="Assets\buttons\add_press.png" />
     <Content Include="Assets\buttons\add_release.png" />
+    <Content Include="Assets\buttons\settings_hover.png" />
+    <Content Include="Assets\buttons\settings_press.png" />
+    <Content Include="Assets\buttons\settings_release.png" />
     <Content Include="Assets\icons dark theme\bank.png" />
     <Content Include="Assets\icons dark theme\bank2.png" />
     <Content Include="Assets\icons dark theme\cards.png" />
