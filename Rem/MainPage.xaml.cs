@@ -61,109 +61,16 @@ namespace Rem
         }
 
 
-        //Category button pointer events
+       
 
-        private void CardsButton_PointerEntered(object sender, PointerRoutedEventArgs e)
+        private void HamburgerButton_Click(object sender, RoutedEventArgs e)
         {
-            CardsHoverBG.Visibility = Visibility.Visible;
+            CategorySplitview.IsPaneOpen = !CategorySplitview.IsPaneOpen;
         }
 
-        private void CardsButton_PointerExited(object sender, PointerRoutedEventArgs e)
+        private void CategoryListbox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CardsHoverBG.Visibility = Visibility.Collapsed;
-        }
-
-        private void PasswordsButton_PointerExited(object sender, PointerRoutedEventArgs e)
-        {
-            PasswordsHoverBG.Visibility = Visibility.Collapsed;
-        }
-
-        private void PasswordsButton_PointerEntered(object sender, PointerRoutedEventArgs e)
-        {
-            PasswordsHoverBG.Visibility = Visibility.Visible;
-        }
-
-        private void MailButton_PointerEntered(object sender, PointerRoutedEventArgs e)
-        {
-            MailHoverBG.Visibility = Visibility.Visible;
-        }
-
-        private void MailButton_PointerExited(object sender, PointerRoutedEventArgs e)
-        {
-            MailHoverBG.Visibility = Visibility.Collapsed;
-        }
-
-        private void BankButton_PointerEntered(object sender, PointerRoutedEventArgs e)
-        {
-            BankHoverBG.Visibility = Visibility.Visible;
-        }
-
-        private void BankButton_PointerExited(object sender, PointerRoutedEventArgs e)
-        {
-            BankHoverBG.Visibility = Visibility.Collapsed;
-        }
-
-        private void UtilitiesButton_PointerEntered(object sender, PointerRoutedEventArgs e)
-        {
-            UtilHoverBG.Visibility = Visibility.Visible;
-        }
-
-        private void UtilitiesButton_PointerExited(object sender, PointerRoutedEventArgs e)
-        {
-            UtilHoverBG.Visibility = Visibility.Collapsed;
-        }
-
-
-
-        //Category button click events
-        private void PasswordsButton_Click(object sender, RoutedEventArgs e)
-        {
-            PasswordsPressBG.Visibility = Visibility.Visible;
-
-            UtilPressBG.Visibility = Visibility.Collapsed;
-            BankPressBG.Visibility = Visibility.Collapsed;
-            MailPressBG.Visibility = Visibility.Collapsed;
-            CardsPressBG.Visibility = Visibility.Collapsed;
-        }
-
-        private void MailButton_Click(object sender, RoutedEventArgs e)
-        {
-            MailPressBG.Visibility = Visibility.Visible;
-
-            PasswordsPressBG.Visibility = Visibility.Collapsed;
-            BankPressBG.Visibility = Visibility.Collapsed;
-            UtilPressBG.Visibility = Visibility.Collapsed;
-            CardsPressBG.Visibility = Visibility.Collapsed;
-        }
-
-        private void UtilitiesButton_Click(object sender, RoutedEventArgs e)
-        {
-            UtilPressBG.Visibility = Visibility.Visible;
-
-            PasswordsPressBG.Visibility = Visibility.Collapsed;
-            BankPressBG.Visibility = Visibility.Collapsed;
-            MailPressBG.Visibility = Visibility.Collapsed;
-            CardsPressBG.Visibility = Visibility.Collapsed;
-        }
-
-        private void BankButton_Click(object sender, RoutedEventArgs e)
-        {
-            BankPressBG.Visibility = Visibility.Visible;
-
-            PasswordsPressBG.Visibility = Visibility.Collapsed;
-            CardsPressBG.Visibility = Visibility.Collapsed;
-            MailPressBG.Visibility = Visibility.Collapsed;
-            UtilPressBG.Visibility = Visibility.Collapsed;
-        }
-
-        private void CardsButton_Click(object sender, RoutedEventArgs e)
-        {
-            CardsPressBG.Visibility = Visibility.Visible;
-
-            PasswordsPressBG.Visibility = Visibility.Collapsed;
-            BankPressBG.Visibility = Visibility.Collapsed;
-            MailPressBG.Visibility = Visibility.Collapsed;
-            UtilPressBG.Visibility = Visibility.Collapsed;
+            
         }
     }
 

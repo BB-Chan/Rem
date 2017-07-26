@@ -406,127 +406,71 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="PivotItemStyle1" TargetType="PivotItem">
-            <Setter Property="Background" Value="{ThemeResource PivotItemBackground}"/>
-            <Setter Property="Margin" Value="{ThemeResource PivotItemMargin}"/>
-            <Setter Property="Padding" Value="0"/>
-            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
-            <Setter Property="IsTabStop" Value="False"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="PivotItem">
-                        <Grid Background="{TemplateBinding Background}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}">
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup x:Name="Pivot">
-                                    <VisualState x:Name="Right"/>
-                                    <VisualState x:Name="Left"/>
-                                    <VisualState x:Name="Center"/>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
-                            <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
     </Page.Resources>
 
     <Grid x:Name="MainLayoutGrid" Background="#FF2A2B30" Margin="0,40,0,0">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="2.5*"/>
-        </Grid.ColumnDefinitions>
-
-        <Grid x:Name="CategoryLayout" Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="173*"/>
-                <RowDefinition Height="35*"/>
-            </Grid.RowDefinitions>
-
-            <StackPanel Background="#FF2A2B30" Grid.Row="0" Margin="0,0,0,10">
-                <TextBlock Text="Categories" Height="20" Margin="10,10,0,5" FontSize="16" FontWeight="Bold" FontFamily="MS UI Gothic" Foreground="#FFC7C7C7"/>
-                <Button x:Name="PasswordsButton" Width="340" Height="30" Style="{StaticResource CategoryButtons}" Foreground="{x:Null}" Background="#00000000" PointerEntered="PasswordsButton_PointerEntered" PointerExited="PasswordsButton_PointerExited" Click="PasswordsButton_Click" BorderThickness="0" Margin="5,0,0,0">
-                    <Grid x:Name="Grid1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="340" Height="30" Margin="-88,-6,-87,-6">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="30"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Rectangle x:Name="PasswordsHoverBG" Grid.ColumnSpan="2" Fill="#FF26272B" HorizontalAlignment="Left" Height="30" RadiusY="5" RadiusX="5" StrokeThickness="0" VerticalAlignment="Top" Width="340" Visibility="Collapsed"/>
-                        <Rectangle x:Name="PasswordsPressBG" Grid.ColumnSpan="2" Fill="#FF303136" HorizontalAlignment="Left" Height="30" RadiusY="5" RadiusX="5" StrokeThickness="0" VerticalAlignment="Top" Width="340" Visibility="Collapsed"/>
-                        <TextBlock Grid.Column="1" Text="Passwords" HorizontalAlignment="Left"  Foreground="#FFC7C7C7" Margin="0" FontSize="12" VerticalAlignment="Center" Height="15.7"/>
-                        <Image Grid.Column="0" Grid.Row="0" Source="Assets/icons dark theme/password.png" Opacity="0.5" Margin="5" VerticalAlignment="Center" Height="20" Width="20"/>
-                    </Grid>
-                </Button>
-                <Button x:Name="CardsButton" Width="340" Height="30" Style="{StaticResource CategoryButtons}" Foreground="{x:Null}" Background="#00000000" PointerEntered="CardsButton_PointerEntered" PointerExited="CardsButton_PointerExited" Click="CardsButton_Click" BorderThickness="0" Margin="5,0,0,0">
-                    <Grid x:Name="Grid" HorizontalAlignment="Center" VerticalAlignment="Center" Width="340" Height="30" Margin="-88,-6,-87,-6">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="30"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Rectangle x:Name="CardsHoverBG" Grid.ColumnSpan="2" Fill="#FF26272B" HorizontalAlignment="Left" Height="30" RadiusY="5" RadiusX="5" StrokeThickness="0" VerticalAlignment="Top" Width="340" Visibility="Collapsed"/>
-                        <Rectangle x:Name="CardsPressBG" Grid.ColumnSpan="2" Fill="#FF303136" HorizontalAlignment="Left" Height="30" RadiusY="5" RadiusX="5" StrokeThickness="0" VerticalAlignment="Top" Width="340" Visibility="Collapsed"/>
-                        <TextBlock Grid.Column="1" Text="Cards" HorizontalAlignment="Left"  Foreground="#FFC7C7C7" Margin="0" FontSize="12" VerticalAlignment="Center" Height="15.7"/>
-                        <Image Grid.Column="0" Source="Assets/icons dark theme/cards.png" Opacity="0.6" Margin="5" VerticalAlignment="Center" Height="20" Width="20" HorizontalAlignment="Center"/>
-                    </Grid>
-                </Button>
-                <Button x:Name="MailButton" Width="340" Height="30" Style="{StaticResource CategoryButtons}" Foreground="{x:Null}" Background="#00000000" PointerEntered="MailButton_PointerEntered" PointerExited="MailButton_PointerExited" Click="MailButton_Click" BorderThickness="0" Margin="5,0,0,0">
-                    <Grid x:Name="Grid2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="340" Height="30" Margin="-88,-6,-87,-6">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="30"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Rectangle x:Name="MailHoverBG" Grid.ColumnSpan="2" Fill="#FF26272B" HorizontalAlignment="Left" Height="30" RadiusY="5" RadiusX="5" StrokeThickness="0" VerticalAlignment="Top" Width="340" Visibility="Collapsed"/>
-                        <Rectangle x:Name="MailPressBG" Grid.ColumnSpan="2" Fill="#FF303136" HorizontalAlignment="Left" Height="30" RadiusY="5" RadiusX="5" StrokeThickness="0" VerticalAlignment="Top" Width="340" Visibility="Collapsed"/>
-                        <TextBlock Grid.Column="1" Text="Mail" HorizontalAlignment="Left"  Foreground="#FFC7C7C7" Margin="0" FontSize="12" VerticalAlignment="Center" Height="15.7"/>
-                        <Image Grid.Column="0" Source="Assets/icons dark theme/mail.png" Opacity="0.5" Margin="5" VerticalAlignment="Center" Height="20" Width="20"/>
-                    </Grid>
-                </Button>
-                <Button x:Name="BankButton" Width="340" Height="30" Style="{StaticResource CategoryButtons}" Foreground="{x:Null}" Background="#00000000" PointerEntered="BankButton_PointerEntered" PointerExited="BankButton_PointerExited" Click="BankButton_Click" BorderThickness="0" Margin="5,0,0,0">
-                    <Grid x:Name="Grid3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="340" Height="30" Margin="-88,-6,-87,-6">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="30"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Rectangle x:Name="BankHoverBG" Grid.ColumnSpan="2" Fill="#FF26272B" HorizontalAlignment="Left" Height="30" RadiusY="5" RadiusX="5" StrokeThickness="0" VerticalAlignment="Top" Width="340" Visibility="Collapsed"/>
-                        <Rectangle x:Name="BankPressBG" Grid.ColumnSpan="2" Fill="#FF303136" HorizontalAlignment="Left" Height="30" RadiusY="5" RadiusX="5" StrokeThickness="0" VerticalAlignment="Top" Width="340" Visibility="Collapsed"/>
-                        <TextBlock Grid.Column="1" Text="Banking" HorizontalAlignment="Left"  Foreground="#FFC7C7C7" Margin="0" FontSize="12" VerticalAlignment="Center" Height="15.7"/>
-                        <Image Grid.Column="0" Source="Assets/icons dark theme/bank.png" Opacity="0.5" Margin="5" VerticalAlignment="Center" Height="20" Width="20"/>
-                    </Grid>
-                </Button>
-                <Button x:Name="UtilitiesButton" Width="340" Height="30" Style="{StaticResource CategoryButtons}" Foreground="{x:Null}" Background="#00000000" PointerEntered="UtilitiesButton_PointerEntered" PointerExited="UtilitiesButton_PointerExited" Click="UtilitiesButton_Click" BorderThickness="0" Margin="5,0,0,0">
-                    <Grid x:Name="Grid4" HorizontalAlignment="Center" VerticalAlignment="Center" Width="340" Height="30" Margin="-88,-6,-87,-6">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="30"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Rectangle x:Name="UtilHoverBG" Grid.ColumnSpan="2" Fill="#FF26272B" HorizontalAlignment="Left" Height="30" RadiusY="5" RadiusX="5" StrokeThickness="0" VerticalAlignment="Top" Width="340" Visibility="Collapsed"/>
-                        <Rectangle x:Name="UtilPressBG" Grid.ColumnSpan="2" Fill="#FF303136" HorizontalAlignment="Left" Height="30" RadiusY="5" RadiusX="5" StrokeThickness="0" VerticalAlignment="Top" Width="340" Visibility="Collapsed"/>
-                        <TextBlock Grid.Column="1" Text="Utilities" HorizontalAlignment="Left"  Foreground="#FFC7C7C7" Margin="0" FontSize="12" VerticalAlignment="Center" Height="15.7"/>
-                        <Image Grid.Column="0" Source="Assets/icons dark theme/utilities.png" Opacity="0.5" Margin="5" VerticalAlignment="Center" Height="20" Width="20"/>
-                    </Grid>
-                </Button>
-            </StackPanel>
-            <Rectangle Fill="#FF232429" HorizontalAlignment="Left" Height="35" Grid.Row="1" Stroke="Black" VerticalAlignment="Bottom" Width="349" StrokeThickness="0"/>
-            <Button x:Name="newItemBtn" Click="newItemBtn_Click" Content="" HorizontalAlignment="Left" Margin="2,0,0,2" Grid.Row="1" VerticalAlignment="Bottom" BorderThickness="0" Width="31" Height="31" Style="{StaticResource NewItemButton}">
-                <Button.Background>
-                    <ImageBrush Stretch="Fill" ImageSource="Assets/buttons/add_release.png"/>
-                </Button.Background>
-            </Button>
-            <Button x:Name="settingsBtn" Click="settingsBtn_Click" Content="" HorizontalAlignment="Right" Margin="0,0,3,2" Grid.Row="1" VerticalAlignment="Bottom" BorderThickness="0" Width="31" Height="31" Style="{StaticResource SettingsButtonStyle}">
-                <Button.Background>
-                    <ImageBrush Stretch="Fill" ImageSource="Assets/buttons/settings_release.png"/>
-                </Button.Background>
-            </Button>
-
-        </Grid>
         <Grid x:Name="titlebar" VerticalAlignment="Top" Background="#FF333541" Height="40" RenderTransformOrigin="0.5,0" Margin="0,-40,0,0" Grid.ColumnSpan="3"/>
+        <Grid x:Name="TitlebarGrid" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,-40,0,0" Height="40" Width="435">
+            <Button x:Name="HamburgerButton" Width="38" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" FontSize="16" Click="HamburgerButton_Click" Background="{x:Null}" Height="40" BorderThickness="0" Foreground="#FFDADADA"/>
+            <TextBox x:Name="searchBox"  
+                     Margin="38,5,0,0" 
+                     TextWrapping="Wrap" Text=""  
+                     Background="#FF2B2B33" Height="30" BorderBrush="#FF1D1E23" Width="180"  
+                     Foreground="White" 
+                     PlaceholderText="Search accounts" 
+                     FontSize="14" FontStyle="Italic" 
+                     Style="{StaticResource TextBoxStyle1}" 
+                     BorderThickness="1" 
+                     VerticalAlignment="Top" HorizontalAlignment="Left"
+                     TextChanged="searchBox_TextChanged" />
+        </Grid>
+        <SplitView 
+                x:Name="CategorySplitview" 
+                DisplayMode="CompactOverlay" 
+                OpenPaneLength="200" 
+                CompactPaneLength="38" 
+                HorizontalAlignment="Left" 
+                Width="335" Background="#FF35353D" PaneBackground="{x:Null}">
+            <SplitView.Pane>
+                <ListBox 
+                        SelectionMode="Single" 
+                        x:Name="CategoryListbox" 
+                        SelectionChanged="CategoryListbox_SelectionChanged" 
+                        Background="#FF2A2B30" Margin="0,0,85,0">
+                    <ListBoxItem x:Name="PasswordLBI">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="16" Text="&#xE192;" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FFDADADA" />
+                            <TextBlock Text="Passwords" FontSize="14" Margin="10,0,0,0" VerticalAlignment="Center" Foreground="#FFDADADA" />
+                        </StackPanel>
+                    </ListBoxItem>
+                    <ListBoxItem x:Name="MailLBI">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="16" Text="&#xE119;" Margin="0" VerticalAlignment="Center" Foreground="#FFDADADA" />
+                            <TextBlock Text="Mail" FontSize="14" Margin="10,0,0,0" VerticalAlignment="Center" Foreground="#FFDADADA" />
+                        </StackPanel>
+                    </ListBoxItem>
+                    <ListBoxItem x:Name="CardsLBI">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="16" Text="&#xEC5C;" Margin="0" VerticalAlignment="Center" Foreground="#FFDADADA" />
+                            <TextBlock Text="Cards" FontSize="14" Margin="10,0,0,0" VerticalAlignment="Center" Foreground="#FFDADADA" />
+                        </StackPanel>
+                    </ListBoxItem>
+                    <ListBoxItem x:Name="BankLBI">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="16" Text="&#xE825;" Margin="0" VerticalAlignment="Center" Foreground="#FFDADADA" />
+                            <TextBlock Text="Bank" FontSize="14" Margin="10,0,0,0" VerticalAlignment="Center" Foreground="#FFDADADA" />
+                        </StackPanel>
+                    </ListBoxItem>
+                </ListBox>
+            </SplitView.Pane>
+            <ScrollViewer x:Name="PWScrollViewer" HorizontalAlignment="Left" Height="1040" VerticalAlignment="Top" Width="297">
+                <ListBox x:Name="listBox" Background="#FF35353D"/>
+            </ScrollViewer>
 
-        <ScrollViewer x:Name="accountList" Grid.Column="1" Background="#FF1D1E23"/>
-        <ScrollViewer x:Name="infoList" Grid.Column="2" Background="#FF2A2B30"/>
-        <TextBox x:Name="searchBox"  Margin="0,-35,0,0" TextWrapping="Wrap" Text=""  Background="#FF2B2B33" Height="5" BorderBrush="#FF1D1E23" Width="180"  Foreground="White" PlaceholderText="Search accounts" FontSize="14" FontStyle="Italic" Style="{StaticResource TextBoxStyle1}" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" TextChanged="searchBox_TextChanged"/>
-
+        </SplitView>
+        <Button x:Name="addButton" Content="&#xE109;" BorderThickness="0" Width="38" Height="38" FontFamily="Segoe MDL2 Assets" Margin="0,0,0,38" VerticalAlignment="Bottom" Foreground="#FFDADADA" Background="{x:Null}"/>
+        <Button x:Name="settingsButton" Content="&#xE115;" BorderThickness="0" Width="38" Height="38" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Bottom" Foreground="#FFDADADA" Background="{x:Null}"/>
     </Grid>
+
+
 </Page>
