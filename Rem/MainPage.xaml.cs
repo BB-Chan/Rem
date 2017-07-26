@@ -72,6 +72,12 @@ namespace Rem
         {
             
         }
+
+        private void searchBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            searchBox.SelectionStart = 0;
+            searchBox.SelectionLength = searchBox.Text.Length;
+        }
     }
 
 }
