@@ -78,6 +78,26 @@ namespace Rem
             searchBox.SelectionStart = 0;
             searchBox.SelectionLength = searchBox.Text.Length;
         }
+
+        private void addButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (PasswordLBI.IsSelected)
+            {
+
+            }
+            else if (MailLBI.IsSelected)
+            {
+
+            }
+            else if (CardsLBI.IsSelected)
+            {
+
+            }
+            else if (BankLBI.IsSelected)
+            {
+
+            }
+        }
     }
 
 }
