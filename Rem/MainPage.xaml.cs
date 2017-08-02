@@ -50,16 +50,31 @@ namespace Rem
 
 
         //Add & Settings click events
-        private void newItemBtn_Click(object sender, RoutedEventArgs e)
+        private void addButton_Click(object sender, RoutedEventArgs e)
         {
+            //Show & hide different controls
+            deleteButton.Visibility = Visibility.Collapsed;
+            editButton.Visibility = Visibility.Collapsed;
+            createButton.Visibility = Visibility.Visible;
+            cancelButton.Visibility = Visibility.Visible;
 
+
+
+            //Create array for info textboxes
+            TextBox[] infoBoxArr = { usernameTextbox, passwordTextbox, sq1_Textbox, sq2_Textbox, sqa1_Textbox, sqa2_Textbox, accNoTextbox, codeTextbox };
+
+            //Loop through array to manipulate properties
+            for (int i = 0; i < infoBoxArr.Length; i++)
+            {
+                infoBoxArr[i].IsReadOnly = false;
+                infoBoxArr[i].IsEnabled = true;
+            }
         }
 
         private void settingsBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
-
 
        
 
@@ -79,24 +94,30 @@ namespace Rem
             searchBox.SelectionLength = searchBox.Text.Length;
         }
 
-        private void addButton_Click(object sender, RoutedEventArgs e)
+        private void AccountListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (PasswordLBI.IsSelected)
-            {
+            //Show & hide different controls
+            deleteButton.Visibility = Visibility.Visible;
+            editButton.Visibility = Visibility.Visible;
+            createButton.Visibility = Visibility.Collapsed;
+            cancelButton.Visibility = Visibility.Collapsed;
 
-            }
-            else if (MailLBI.IsSelected)
-            {
+            //Create array for info textboxes
+            TextBox [] infoBoxArr = { usernameTextbox, passwordTextbox, sq1_Textbox, sq2_Textbox, sqa1_Textbox, sqa2_Textbox, accNoTextbox, codeTextbox };
 
-            }
-            else if (CardsLBI.IsSelected)
+            //Loop through array to manipulate properties
+            for (int i = 0; i < infoBoxArr.Length; i++)
             {
-
+                infoBoxArr[i].IsReadOnly = true;
+                infoBoxArr[i].IsEnabled = false;
             }
-            else if (BankLBI.IsSelected)
-            {
+        }
 
-            }
+        private void createButton_Click(object sender, RoutedEventArgs e)
+        {
+            string test = "Amazon";
+            AccountListBox.Items.Add(test);
+            
         }
     }
 

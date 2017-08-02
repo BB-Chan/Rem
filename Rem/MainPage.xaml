@@ -719,13 +719,13 @@
                         x:Name="CategoryListbox" 
                         SelectionChanged="CategoryListbox_SelectionChanged" 
                         Background="#FF2A2B30" Margin="0,0,85,0">
-                    <ListBoxItem x:Name="PasswordLBI">
+                    <ListBoxItem x:Name="PasswordLBI" ToolTipService.ToolTip="">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="16" Text="&#xE192;" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FFDADADA" />
                             <TextBlock Text="Passwords" FontSize="14" Margin="10,0,0,0" VerticalAlignment="Center" Foreground="#FFDADADA" />
                         </StackPanel>
                     </ListBoxItem>
-                    <ListBoxItem x:Name="MailLBI">
+                    <ListBoxItem x:Name="MailLBI" ToolTipService.ToolTip="">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="16" Text="&#xE119;" Margin="0" VerticalAlignment="Center" Foreground="#FFDADADA" />
                             <TextBlock Text="Mail" FontSize="14" Margin="10,0,0,0" VerticalAlignment="Center" Foreground="#FFDADADA" />
@@ -750,21 +750,8 @@
 
             <!-- Account panel-->
             <ScrollViewer x:Name="AccountScrollViewer">
-                <ListBox x:Name="AccountListBox" Background="#FF1D1E23">
-                    <ListBoxItem Style="{StaticResource AccountListBoxStyle}"/>
-                    <ListBoxItem Style="{StaticResource AccountListBoxStyle}"/>
-                    <ListBoxItem Style="{StaticResource AccountListBoxStyle}"/>
-                    <ListBoxItem Style="{StaticResource AccountListBoxStyle}"/>
-                    <ListBoxItem Style="{StaticResource AccountListBoxStyle}"/>
-                    <ListBoxItem Style="{StaticResource AccountListBoxStyle}"/>
-                    <ListBoxItem Style="{StaticResource AccountListBoxStyle}"/>
-                    <ListBoxItem Style="{StaticResource AccountListBoxStyle}"/>
-                    <ListBoxItem Style="{StaticResource AccountListBoxStyle}"/>
-                    <ListBoxItem Style="{StaticResource AccountListBoxStyle}"/>
-                    <ListBoxItem Style="{StaticResource AccountListBoxStyle}"/>
-                    <ListBoxItem Style="{StaticResource AccountListBoxStyle}"/>
-                    <ListBoxItem Style="{StaticResource AccountListBoxStyle}"/>
-                    <ListBoxItem Style="{StaticResource AccountListBoxStyle}"/>
+                <ListBox x:Name="AccountListBox" Background="#FF1D1E23" SelectionChanged="AccountListBox_SelectionChanged">
+                    <ListBoxItem x:Name="testLBI" Style="{StaticResource AccountListBoxStyle}"/>
                 </ListBox>
             </ScrollViewer>
         </SplitView>
@@ -779,13 +766,13 @@
                 FontFamily="Segoe MDL2 Assets" 
                 Margin="0,0,0,38" VerticalAlignment="Bottom"
                 Click="addButton_Click"
-                Foreground="#FFDADADA" Background="{x:Null}"/>
-        <Button x:Name="settingsButton" Content="&#xE115;" BorderThickness="0" Width="38" Height="38" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Bottom" Foreground="#FFDADADA" Background="{x:Null}"/>
+                Foreground="#FFDADADA" Background="{x:Null}" ToolTipService.ToolTip="Add"/>
+        <Button x:Name="settingsButton" Content="&#xE115;" BorderThickness="0" Width="38" Height="38" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Bottom" Foreground="#FFDADADA" Background="{x:Null}" ToolTipService.ToolTip="Settings"/>
 
 
 
         <!-- Info panel-->
-        <Grid Grid.Column="1" Background="#FF35353D">
+        <Grid x:Name="InfoGrid" Grid.Column="1" Background="#FF35353D">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150"/>
                 <ColumnDefinition/>
@@ -973,21 +960,50 @@
                 Foreground="#FFEAEAEA" FontSize="16" Height="17" HorizontalAlignment="Left" 
                 />
             <Button x:Name="editButton" 
-            Content="&#xE104;" 
-            BorderThickness="0" 
-            Width="38" Height="38" 
-            FontFamily="Segoe MDL2 Assets" 
-            Margin="0,7,55,0" VerticalAlignment="Top"
-            
-            Foreground="#FFDADADA" Background="{x:Null}" Grid.Column="1" HorizontalAlignment="Right"/>
+                Content="&#xE104;" 
+                BorderThickness="0" 
+                Width="38" Height="38" 
+                FontFamily="Segoe MDL2 Assets" 
+                Margin="0,7,55,0" VerticalAlignment="Top"
+                Foreground="#FFDADADA" 
+                Background="{x:Null}" 
+                Grid.Column="1" 
+                HorizontalAlignment="Right" 
+                FontSize="20" ToolTipService.ToolTip="Edit" Visibility="Collapsed"/>
             <Button x:Name="deleteButton" 
                 Content="&#xE107;" 
                 BorderThickness="0" 
                 Width="38" Height="38" 
                 FontFamily="Segoe MDL2 Assets" 
                 Margin="0,7,17,0" VerticalAlignment="Top"
-                
-                Foreground="#FFDADADA" Background="{x:Null}" Grid.Column="1" HorizontalAlignment="Right"/>
+                Foreground="#FFDADADA" 
+                Background="{x:Null}" 
+                Grid.Column="1" 
+                HorizontalAlignment="Right" 
+                FontSize="20" ToolTipService.ToolTip="Delete" Visibility="Collapsed"/>
+            <Button x:Name="createButton" 
+                Content="&#xE10B;" 
+                Click="createButton_Click"
+                BorderThickness="0" 
+                Width="38" Height="38" 
+                FontFamily="Segoe MDL2 Assets" 
+                Margin="0,7,55,0" VerticalAlignment="Top"
+                Foreground="#FFDADADA" 
+                Background="{x:Null}" 
+                Grid.Column="1" 
+                HorizontalAlignment="Right" 
+                FontSize="20" ToolTipService.ToolTip="Create" Visibility="Collapsed"/>
+            <Button x:Name="cancelButton" 
+                Content="&#xE10A;" 
+                BorderThickness="0" 
+                Width="38" Height="38" 
+                FontFamily="Segoe MDL2 Assets" 
+                Margin="0,7,17,0" VerticalAlignment="Top"
+                Foreground="#FFDADADA" 
+                Background="{x:Null}" 
+                Grid.Column="1" 
+                HorizontalAlignment="Right" 
+                FontSize="20" ToolTipService.ToolTip="Cancel" Visibility="Collapsed"/>
         </Grid>
 
 
