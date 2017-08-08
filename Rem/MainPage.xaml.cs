@@ -15,6 +15,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.ViewManagement;
+using Rem.Models;
+using System.Collections.ObjectModel;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -23,11 +25,16 @@ namespace Rem
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class MainPage
     {
+        Accounts acc = new Accounts();
+        ObservableCollection<Accounts> NewAccount = new ObservableCollection<Accounts>();
+
         public MainPage()
         {
             this.InitializeComponent();
+        
+            
 
             //Catches current titlebar and sets custom shape as titlebar
             CoreApplicationViewTitleBar coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
@@ -36,11 +43,23 @@ namespace Rem
 
             //Catches the current title bar as a variable
             var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+
             //Settings titlebar colors
             titleBar.ButtonBackgroundColor = Colors.Transparent;
             titleBar.ButtonForegroundColor = Colors.White;
             titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
 
+
+
+            //Create array for info textboxes
+            TextBox[] infoBoxArr = { usernameTextbox, passwordTextbox, accountTextbox, sq1_Textbox, sq2_Textbox, sqa1_Textbox, sqa2_Textbox, accNoTextbox, codeTextbox };
+
+            //Loop through array to manipulate properties
+            for (int i = 0; i < infoBoxArr.Length; i++)
+            {
+                infoBoxArr[i].IsReadOnly = true;
+                infoBoxArr[i].IsEnabled = false;
+            }
         }
 
         private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -61,7 +80,7 @@ namespace Rem
 
 
             //Create array for info textboxes
-            TextBox[] infoBoxArr = { usernameTextbox, passwordTextbox, sq1_Textbox, sq2_Textbox, sqa1_Textbox, sqa2_Textbox, accNoTextbox, codeTextbox };
+            TextBox[] infoBoxArr = { usernameTextbox, accountTextbox, passwordTextbox, sq1_Textbox, sq2_Textbox, sqa1_Textbox, sqa2_Textbox, accNoTextbox, codeTextbox };
 
             //Loop through array to manipulate properties
             for (int i = 0; i < infoBoxArr.Length; i++)
@@ -103,7 +122,7 @@ namespace Rem
             cancelButton.Visibility = Visibility.Collapsed;
 
             //Create array for info textboxes
-            TextBox [] infoBoxArr = { usernameTextbox, passwordTextbox, sq1_Textbox, sq2_Textbox, sqa1_Textbox, sqa2_Textbox, accNoTextbox, codeTextbox };
+            TextBox [] infoBoxArr = { usernameTextbox, passwordTextbox, accountTextbox, sq1_Textbox, sq2_Textbox, sqa1_Textbox, sqa2_Textbox, accNoTextbox, codeTextbox };
 
             //Loop through array to manipulate properties
             for (int i = 0; i < infoBoxArr.Length; i++)
@@ -115,10 +134,35 @@ namespace Rem
 
         private void createButton_Click(object sender, RoutedEventArgs e)
         {
-            string test = "Amazon";
-            AccountListBox.Items.Add(test);
+            TextBox[] infoBoxArr = { usernameTextbox, passwordTextbox, accountTextbox, sq1_Textbox, sq2_Textbox, sqa1_Textbox, sqa2_Textbox, accNoTextbox, codeTextbox };
+
+            acc.Account = accountTextbox.Text;
+            acc.Username = usernameTextbox.Text;
+
+            //Create new account and select it
+            NewAccount.Add(new Accounts
+            {
+                Account = accountTextbox.Text,
+                Username = usernameTextbox.Text,
+                Password = passwordTextbox.Text,
+                SQ1 = sq1_Textbox.Text,
+                SQA1 = sqa1_Textbox.Text,
+                SQ2 = sq2_Textbox.Text,
+                SQA2 = sqa2_Textbox.Text,
+                Code = codeTextbox.Text,
+                Accnumber = accNoTextbox.Text,
+            });
+                
+                
+            AccountListBox.SelectedIndex = AccountListBox.Items.Count - 1;
+            
+
+            //Clear textboxes
+            for(int i =0; i < infoBoxArr.Length; i++)
+            {
+                infoBoxArr[i].Text = "";
+            }
             
         }
     }
-
 }

@@ -5,6 +5,7 @@
     xmlns:local="using:Rem"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:Rem.Models"
     mc:Ignorable="d" Width="Auto" Height="Auto" Background="Black">
     <Page.Resources>
         <Style x:Key="SearchboxStyle" TargetType="TextBox">
@@ -706,6 +707,10 @@
 
 
         <!-- Category panel-->
+
+
+
+        <!-- Category panel-->
         <SplitView 
                 x:Name="CategorySplitview" 
                 DisplayMode="CompactOverlay" 
@@ -747,27 +752,32 @@
             </SplitView.Pane>
 
 
-
             <!-- Account panel-->
             <ScrollViewer x:Name="AccountScrollViewer">
-                <ListBox x:Name="AccountListBox" Background="#FF1D1E23" SelectionChanged="AccountListBox_SelectionChanged">
-                    <ListBoxItem x:Name="testLBI" Style="{StaticResource AccountListBoxStyle}"/>
+                <ListBox ItemsSource="{x:Bind NewAccount}"
+                    x:Name="AccountListBox" 
+                    Background="#FF1D1E23" 
+                    SelectionChanged="AccountListBox_SelectionChanged">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock x:Name="accountTextBlock"
+                                HorizontalAlignment="Left" 
+                                TextWrapping="Wrap"
+                                Text="{Binding Account}"
+                                VerticalAlignment="Top" 
+                                FontFamily="Segoe UI Semibold" FontSize="20" Foreground="#FFE6E6E6"
+                                />
+                                <TextBlock x:Name="userTextBlock" 
+                                Text="{Binding Username}"
+                                HorizontalAlignment="Left" TextWrapping="Wrap" 
+                                VerticalAlignment="Top" FontSize="12" Foreground="White" Opacity="0.5"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
                 </ListBox>
             </ScrollViewer>
         </SplitView>
-
-
-
-        <!-- New account button & Settings button -->
-        <Button x:Name="addButton" 
-                Content="&#xE109;" 
-                BorderThickness="0" 
-                Width="38" Height="38" 
-                FontFamily="Segoe MDL2 Assets" 
-                Margin="0,0,0,38" VerticalAlignment="Bottom"
-                Click="addButton_Click"
-                Foreground="#FFDADADA" Background="{x:Null}" ToolTipService.ToolTip="Add"/>
-        <Button x:Name="settingsButton" Content="&#xE115;" BorderThickness="0" Width="38" Height="38" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Bottom" Foreground="#FFDADADA" Background="{x:Null}" ToolTipService.ToolTip="Settings"/>
 
 
 
@@ -786,16 +796,18 @@
                 <RowDefinition Height="35"/>
                 <RowDefinition Height="35"/>
                 <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Rectangle
                 Grid.ColumnSpan="2"
-                Grid.RowSpan="8"
+                Grid.RowSpan="10"
                 RadiusX="10" RadiusY="10" 
                 Fill="#FF2A2B30" Margin="10,0,10,10" Grid.Row="1"
                 />
             <TextBlock 
-                    Grid.Row="1" 
+                    Grid.Row="2" 
                     Grid.Column="0"
                     TextAlignment="Right" 
                     Text="Username" 
@@ -805,7 +817,7 @@
                     Foreground="#FFEAEAEA" FontSize="12" Height="17" 
                 />
             <TextBlock 
-                    Grid.Row="2" 
+                    Grid.Row="3" 
                     Grid.Column="0"
                     TextAlignment="Right" 
                     Text="Password" 
@@ -815,7 +827,7 @@
                     Foreground="#FFEAEAEA" FontSize="12" Height="17" 
                 />
             <TextBlock 
-                    Grid.Row="3" 
+                    Grid.Row="4" 
                     Grid.Column="0"
                     TextAlignment="Right" 
                     Text="Security Question 1" 
@@ -825,7 +837,7 @@
                     Foreground="#FFEAEAEA" FontSize="12" Height="17" 
                 />
             <TextBlock 
-                    Grid.Row="4" 
+                    Grid.Row="6" 
                     Grid.Column="0"
                     TextAlignment="Right" 
                     Text="Security Question 2" 
@@ -835,7 +847,7 @@
                     Foreground="#FFEAEAEA" FontSize="12" Height="17" 
                 />
             <TextBlock 
-                    Grid.Row="5" 
+                    Grid.Row="8" 
                     Grid.Column="0"
                     TextAlignment="Right" 
                     Text="Code" 
@@ -845,7 +857,7 @@
                     Foreground="#FFEAEAEA" FontSize="12" Height="17" 
                 />
             <TextBlock 
-                    Grid.Row="6" 
+                    Grid.Row="9" 
                     Grid.Column="0"
                     TextAlignment="Right" 
                     Text="Account Number" 
@@ -864,7 +876,7 @@
                 Style="{StaticResource InfoTextBoxStyle}" 
                 BorderThickness="1" 
                 VerticalAlignment="Center" HorizontalAlignment="Left"
-                Grid.Row="1" Grid.Column="1"
+                Grid.Row="2" Grid.Column="1"
                      />
             <TextBox x:Name="passwordTextbox"  
                     Margin="10,2,0,1" 
@@ -876,7 +888,7 @@
                     Style="{StaticResource InfoTextBoxStyle}" 
                     BorderThickness="1" 
                     VerticalAlignment="Center" HorizontalAlignment="Left"
-                    Grid.Row="2" Grid.Column="1"
+                    Grid.Row="3" Grid.Column="1"
                      />
             <TextBox x:Name="sq1_Textbox"  
                     Margin="10,2,0,1" 
@@ -888,10 +900,10 @@
                     Style="{StaticResource InfoTextBoxStyle}" 
                     BorderThickness="1" 
                     VerticalAlignment="Center" HorizontalAlignment="Left"
-                    Grid.Row="3" Grid.Column="1"
+                    Grid.Row="4" Grid.Column="1"
                      />
             <TextBox x:Name="sqa1_Textbox"  
-                    Margin="185,2,0,1" 
+                    Margin="10,1,0,2" 
                     TextWrapping="Wrap" Text=""  
                     Background="#FF25252B" Height="32" BorderBrush="#FF1D1E23" Width="162"  
                     Foreground="#FFEAEAEA" 
@@ -900,7 +912,7 @@
                     Style="{StaticResource InfoTextBoxStyle}" 
                     BorderThickness="1" 
                     VerticalAlignment="Center" HorizontalAlignment="Left"
-                    Grid.Row="3" Grid.Column="1"
+                    Grid.Row="5" Grid.Column="1"
                      />
             <TextBox x:Name="sq2_Textbox"  
                     Margin="10,1,0,2" 
@@ -912,10 +924,10 @@
                     Style="{StaticResource InfoTextBoxStyle}" 
                     BorderThickness="1" 
                     VerticalAlignment="Center" HorizontalAlignment="Left"
-                    Grid.Row="4" Grid.Column="1"
+                    Grid.Row="6" Grid.Column="1"
                      />
             <TextBox x:Name="sqa2_Textbox"  
-                    Margin="185,1,0,2" 
+                    Margin="10,1,0,2" 
                     TextWrapping="Wrap" Text=""  
                     Background="#FF25252B" Height="32" BorderBrush="#FF1D1E23" Width="162"  
                     Foreground="#FFEAEAEA" 
@@ -924,7 +936,7 @@
                     Style="{StaticResource InfoTextBoxStyle}" 
                     BorderThickness="1" 
                     VerticalAlignment="Center" HorizontalAlignment="Left"
-                    Grid.Row="4" Grid.Column="1"
+                    Grid.Row="7" Grid.Column="1"
                      />
             <TextBox x:Name="codeTextbox"  
                     Margin="10,2,0,1" 
@@ -936,7 +948,7 @@
                     Style="{StaticResource InfoTextBoxStyle}" 
                     BorderThickness="1" 
                     VerticalAlignment="Center" HorizontalAlignment="Left"
-                    Grid.Row="5" Grid.Column="1"
+                    Grid.Row="8" Grid.Column="1"
                      />
             <TextBox x:Name="accNoTextbox"  
                     Margin="10,1,0,2" 
@@ -948,17 +960,8 @@
                     Style="{StaticResource InfoTextBoxStyle}" 
                     BorderThickness="1" 
                     VerticalAlignment="Center" HorizontalAlignment="Left"
-                    Grid.Row="6" Grid.Column="1"
+                    Grid.Row="9" Grid.Column="1"
                      />
-            <TextBlock 
-                Grid.Column="0"
-                TextAlignment="Right" 
-                Text="Amazon" 
-                VerticalAlignment="Center" 
-                Margin="15,15,10,18" 
-                FontFamily="Segoe UI Semibold" 
-                Foreground="#FFEAEAEA" FontSize="16" Height="17" HorizontalAlignment="Left" 
-                />
             <Button x:Name="editButton" 
                 Content="&#xE104;" 
                 BorderThickness="0" 
@@ -1004,6 +1007,29 @@
                 Grid.Column="1" 
                 HorizontalAlignment="Right" 
                 FontSize="20" ToolTipService.ToolTip="Cancel" Visibility="Collapsed"/>
+            <TextBlock 
+                Grid.Row="1" 
+                Grid.Column="0"
+                TextAlignment="Right" 
+                Text="Account" 
+                VerticalAlignment="Center" 
+                Margin="0,10,10,8" 
+                FontFamily="Segoe UI Semibold" 
+                Foreground="#FFEAEAEA" FontSize="12" Height="17" 
+                />
+            <TextBox x:Name="accountTextbox"  
+                Margin="10,3,0,0" 
+                TextWrapping="Wrap" Text=""  
+                Background="#FF25252B" Height="32" BorderBrush="#FF1D1E23" Width="162"  
+                Foreground="#FFEAEAEA" 
+                PlaceholderText="" 
+                FontSize="12" FontStyle="Normal"
+                Style="{StaticResource InfoTextBoxStyle}" 
+                BorderThickness="1" 
+                VerticalAlignment="Center" HorizontalAlignment="Left"
+                Grid.Row="1" Grid.Column="1"
+                     />
+
         </Grid>
 
 
@@ -1039,6 +1065,24 @@
                      GotFocus="searchBox_GotFocus"
                      />
         </Grid>
+        <Button x:Name="addButton" 
+                    Content="&#xE109;" 
+                    BorderThickness="0" 
+                    Width="38" Height="38" 
+                    FontFamily="Segoe MDL2 Assets" 
+                    Margin="17,5,0,0" VerticalAlignment="Top"
+                    Click="addButton_Click"
+                    Foreground="#FFDADADA" Background="{x:Null}" ToolTipService.ToolTip="Add" FontSize="20" Grid.Column="1"/>
+        <Button x:Name="settingsButton" 
+                    Content="&#xE115;" 
+                    BorderThickness="0" 
+                    Width="38" Height="38" 
+                    FontFamily="Segoe MDL2 Assets" 
+                    VerticalAlignment="Top" 
+                    Foreground="#FFDADADA" Background="{x:Null}" 
+                    ToolTipService.ToolTip="Settings" 
+                    Margin="55,5,0,0" 
+                    FontSize="20" Grid.Column="1"/>
     </Grid>
 
 
