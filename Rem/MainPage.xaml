@@ -742,12 +742,6 @@
                             <TextBlock Text="Cards" FontSize="14" Margin="10,0,0,0" VerticalAlignment="Center" Foreground="#FFDADADA" />
                         </StackPanel>
                     </ListBoxItem>
-                    <ListBoxItem x:Name="BankLBI">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="16" Text="&#xE825;" Margin="0" VerticalAlignment="Center" Foreground="#FFDADADA" />
-                            <TextBlock Text="Bank" FontSize="14" Margin="10,0,0,0" VerticalAlignment="Center" Foreground="#FFDADADA" />
-                        </StackPanel>
-                    </ListBoxItem>
                 </ListBox>
             </SplitView.Pane>
 
@@ -771,7 +765,50 @@
                                 <TextBlock x:Name="userTextBlock" 
                                 Text="{Binding Username}"
                                 HorizontalAlignment="Left" TextWrapping="Wrap" 
-                                VerticalAlignment="Top" FontSize="12" Foreground="White" Opacity="0.5"/>
+                                VerticalAlignment="Top" FontSize="12" Foreground="White" Opacity="0.5"
+                                />
+                                <TextBlock x:Name="passwordTextBlock" 
+                                Text="{Binding Password, Mode=TwoWay}"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Visibility="Collapsed"
+                                />
+                                <TextBlock x:Name="SQ1TextBlock" 
+                                Text="{Binding SQ1}"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Visibility="Collapsed"
+                                />
+                                <TextBlock x:Name="SQA1TextBlock" 
+                                Text="{Binding SQA1}"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Visibility="Collapsed"
+                                />
+                                <TextBlock x:Name="SQ2TextBlock" 
+                                Text="{Binding SQ2}"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Visibility="Collapsed"
+                                />
+                                <TextBlock x:Name="SQA2TextBlock" 
+                                Text="{Binding SQA2}"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Visibility="Collapsed"
+                                />
+                                <TextBlock x:Name="codeTextBlock" 
+                                Text="{Binding Code}"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Visibility="Collapsed"
+                                />
+                                <TextBlock x:Name="accnoTextBlock" 
+                                Text="{Binding Accnumber}"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Visibility="Collapsed"
+                                />
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
@@ -806,7 +843,7 @@
                 RadiusX="10" RadiusY="10" 
                 Fill="#FF2A2B30" Margin="10,0,10,10" Grid.Row="1"
                 />
-            <TextBlock 
+            <TextBlock x:Name="usernameTxtBlock" 
                     Grid.Row="2" 
                     Grid.Column="0"
                     TextAlignment="Right" 
@@ -816,7 +853,7 @@
                     FontFamily="Segoe UI Semibold" 
                     Foreground="#FFEAEAEA" FontSize="12" Height="17" 
                 />
-            <TextBlock 
+            <TextBlock x:Name="pwTxtBlock" 
                     Grid.Row="3" 
                     Grid.Column="0"
                     TextAlignment="Right" 
@@ -826,7 +863,7 @@
                     FontFamily="Segoe UI Semibold" 
                     Foreground="#FFEAEAEA" FontSize="12" Height="17" 
                 />
-            <TextBlock 
+            <TextBlock x:Name="sq1TxtBlock" 
                     Grid.Row="4" 
                     Grid.Column="0"
                     TextAlignment="Right" 
@@ -836,7 +873,7 @@
                     FontFamily="Segoe UI Semibold" 
                     Foreground="#FFEAEAEA" FontSize="12" Height="17" 
                 />
-            <TextBlock 
+            <TextBlock x:Name="sq2TxtBlock" 
                     Grid.Row="6" 
                     Grid.Column="0"
                     TextAlignment="Right" 
@@ -846,7 +883,7 @@
                     FontFamily="Segoe UI Semibold" 
                     Foreground="#FFEAEAEA" FontSize="12" Height="17" 
                 />
-            <TextBlock 
+            <TextBlock x:Name="codeTxtBlock" 
                     Grid.Row="8" 
                     Grid.Column="0"
                     TextAlignment="Right" 
@@ -856,7 +893,7 @@
                     FontFamily="Segoe UI Semibold" 
                     Foreground="#FFEAEAEA" FontSize="12" Height="17" 
                 />
-            <TextBlock 
+            <TextBlock x:Name="accNoTxtBlock" 
                     Grid.Row="9" 
                     Grid.Column="0"
                     TextAlignment="Right" 
@@ -866,8 +903,90 @@
                     FontFamily="Segoe UI Semibold" 
                     Foreground="#FFEAEAEA" FontSize="12" Height="17" 
                 />
+
+            <Button x:Name="editButton" 
+                Content="&#xE104;" 
+                BorderThickness="0" 
+                Width="38" Height="38" 
+                FontFamily="Segoe MDL2 Assets" 
+                Margin="0,7,55,0" VerticalAlignment="Top"
+                Foreground="#FFDADADA" 
+                Background="{x:Null}" 
+                Grid.Column="1" 
+                HorizontalAlignment="Right"
+                Click="editButton_Click"
+                FontSize="20" ToolTipService.ToolTip="Edit" Visibility="Collapsed"/>
+            <Button x:Name="deleteButton" 
+                Content="&#xE107;" 
+                BorderThickness="0" 
+                Width="38" Height="38" 
+                FontFamily="Segoe MDL2 Assets" 
+                Margin="0,7,17,0" VerticalAlignment="Top"
+                Foreground="#FFDADADA" 
+                Background="{x:Null}" 
+                Grid.Column="1" 
+                HorizontalAlignment="Right" 
+                Click="deleteButton_Click"
+                FontSize="20" ToolTipService.ToolTip="Delete" Visibility="Collapsed"/>
+            <Button x:Name="createButton" 
+                Content="&#xE10B;" 
+                Click="createButton_Click"
+                BorderThickness="0" 
+                Width="38" Height="38" 
+                FontFamily="Segoe MDL2 Assets" 
+                Margin="0,7,55,0" VerticalAlignment="Top"
+                Foreground="#FFDADADA" 
+                Background="{x:Null}" 
+                Grid.Column="1" 
+                HorizontalAlignment="Right" 
+                FontSize="20" ToolTipService.ToolTip="Create" Visibility="Collapsed"/>
+            <Button x:Name="acceptButton" 
+                Content="&#xE10B;" 
+                Click="acceptButton_Click"
+                BorderThickness="0" 
+                Width="38" Height="38" 
+                FontFamily="Segoe MDL2 Assets" 
+                Margin="0,7,55,0" VerticalAlignment="Top"
+                Foreground="#FFDADADA" 
+                Background="{x:Null}" 
+                Grid.Column="1" 
+                HorizontalAlignment="Right" 
+                FontSize="20" ToolTipService.ToolTip="Accept" Visibility="Collapsed"/>
+            <Button x:Name="cancelButton" 
+                Content="&#xE10A;" 
+                BorderThickness="0" 
+                Width="38" Height="38" 
+                FontFamily="Segoe MDL2 Assets" 
+                Margin="0,7,17,0" VerticalAlignment="Top"
+                Foreground="#FFDADADA" 
+                Background="{x:Null}" 
+                Grid.Column="1" 
+                HorizontalAlignment="Right" 
+                FontSize="20" ToolTipService.ToolTip="Cancel" Visibility="Collapsed"/>
+            <TextBlock x:Name="accountTxtBlock" 
+                Grid.Row="1" 
+                Grid.Column="0"
+                TextAlignment="Right" 
+                Text="Account" 
+                VerticalAlignment="Center" 
+                Margin="0,10,10,8" 
+                FontFamily="Segoe UI Semibold" 
+                Foreground="#FFEAEAEA" FontSize="12" Height="17" 
+                />
+            <TextBox x:Name="accountTextbox"  
+                Margin="10,1,0,2" 
+                TextWrapping="Wrap" Text=""  
+                Background="#FF25252B" Height="32" BorderBrush="#FF1D1E23" Width="162"  
+                Foreground="#FFEAEAEA" 
+                PlaceholderText="" 
+                FontSize="12" FontStyle="Normal"
+                Style="{StaticResource InfoTextBoxStyle}" 
+                BorderThickness="1" 
+                VerticalAlignment="Center" HorizontalAlignment="Left"
+                Grid.Row="1" Grid.Column="1"
+                     />
             <TextBox x:Name="usernameTextbox"  
-                Margin="10,2,0,1" 
+                Margin="10,1,0,2" 
                 TextWrapping="Wrap" Text=""  
                 Background="#FF25252B" Height="32" BorderBrush="#FF1D1E23" Width="162"  
                 Foreground="#FFEAEAEA" 
@@ -879,7 +998,7 @@
                 Grid.Row="2" Grid.Column="1"
                      />
             <TextBox x:Name="passwordTextbox"  
-                    Margin="10,2,0,1" 
+                    Margin="10,1,0,2" 
                     TextWrapping="Wrap" Text=""  
                     Background="#FF25252B" Height="32" BorderBrush="#FF1D1E23" Width="162"  
                     Foreground="#FFEAEAEA" 
@@ -891,7 +1010,7 @@
                     Grid.Row="3" Grid.Column="1"
                      />
             <TextBox x:Name="sq1_Textbox"  
-                    Margin="10,2,0,1" 
+                    Margin="10,1,0,2" 
                     TextWrapping="Wrap" Text=""  
                     Background="#FF25252B" Height="32" BorderBrush="#FF1D1E23" Width="162"  
                     Foreground="#FFEAEAEA" 
@@ -939,7 +1058,7 @@
                     Grid.Row="7" Grid.Column="1"
                      />
             <TextBox x:Name="codeTextbox"  
-                    Margin="10,2,0,1" 
+                    Margin="10,1,0,2" 
                     TextWrapping="Wrap" Text=""  
                     Background="#FF25252B" Height="32" BorderBrush="#FF1D1E23" Width="162"  
                     Foreground="#FFEAEAEA" 
@@ -961,73 +1080,6 @@
                     BorderThickness="1" 
                     VerticalAlignment="Center" HorizontalAlignment="Left"
                     Grid.Row="9" Grid.Column="1"
-                     />
-            <Button x:Name="editButton" 
-                Content="&#xE104;" 
-                BorderThickness="0" 
-                Width="38" Height="38" 
-                FontFamily="Segoe MDL2 Assets" 
-                Margin="0,7,55,0" VerticalAlignment="Top"
-                Foreground="#FFDADADA" 
-                Background="{x:Null}" 
-                Grid.Column="1" 
-                HorizontalAlignment="Right" 
-                FontSize="20" ToolTipService.ToolTip="Edit" Visibility="Collapsed"/>
-            <Button x:Name="deleteButton" 
-                Content="&#xE107;" 
-                BorderThickness="0" 
-                Width="38" Height="38" 
-                FontFamily="Segoe MDL2 Assets" 
-                Margin="0,7,17,0" VerticalAlignment="Top"
-                Foreground="#FFDADADA" 
-                Background="{x:Null}" 
-                Grid.Column="1" 
-                HorizontalAlignment="Right" 
-                FontSize="20" ToolTipService.ToolTip="Delete" Visibility="Collapsed"/>
-            <Button x:Name="createButton" 
-                Content="&#xE10B;" 
-                Click="createButton_Click"
-                BorderThickness="0" 
-                Width="38" Height="38" 
-                FontFamily="Segoe MDL2 Assets" 
-                Margin="0,7,55,0" VerticalAlignment="Top"
-                Foreground="#FFDADADA" 
-                Background="{x:Null}" 
-                Grid.Column="1" 
-                HorizontalAlignment="Right" 
-                FontSize="20" ToolTipService.ToolTip="Create" Visibility="Collapsed"/>
-            <Button x:Name="cancelButton" 
-                Content="&#xE10A;" 
-                BorderThickness="0" 
-                Width="38" Height="38" 
-                FontFamily="Segoe MDL2 Assets" 
-                Margin="0,7,17,0" VerticalAlignment="Top"
-                Foreground="#FFDADADA" 
-                Background="{x:Null}" 
-                Grid.Column="1" 
-                HorizontalAlignment="Right" 
-                FontSize="20" ToolTipService.ToolTip="Cancel" Visibility="Collapsed"/>
-            <TextBlock 
-                Grid.Row="1" 
-                Grid.Column="0"
-                TextAlignment="Right" 
-                Text="Account" 
-                VerticalAlignment="Center" 
-                Margin="0,10,10,8" 
-                FontFamily="Segoe UI Semibold" 
-                Foreground="#FFEAEAEA" FontSize="12" Height="17" 
-                />
-            <TextBox x:Name="accountTextbox"  
-                Margin="10,3,0,0" 
-                TextWrapping="Wrap" Text=""  
-                Background="#FF25252B" Height="32" BorderBrush="#FF1D1E23" Width="162"  
-                Foreground="#FFEAEAEA" 
-                PlaceholderText="" 
-                FontSize="12" FontStyle="Normal"
-                Style="{StaticResource InfoTextBoxStyle}" 
-                BorderThickness="1" 
-                VerticalAlignment="Center" HorizontalAlignment="Left"
-                Grid.Row="1" Grid.Column="1"
                      />
 
         </Grid>
