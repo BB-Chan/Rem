@@ -837,32 +837,6 @@
                 <RowDefinition Height="35"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Rectangle
-                Grid.ColumnSpan="2"
-                Grid.RowSpan="10"
-                RadiusX="10" RadiusY="10" 
-                Fill="#FF2A2B30" Margin="10,0,10,10" Grid.Row="1"
-                />
-            <TextBlock x:Name="usernameTxtBlock" 
-                    Grid.Row="2" 
-                    Grid.Column="0"
-                    TextAlignment="Right" 
-                    Text="Username" 
-                    VerticalAlignment="Center" 
-                    Margin="0,9,10,9" 
-                    FontFamily="Segoe UI Semibold" 
-                    Foreground="#FFEAEAEA" FontSize="12" Height="17" 
-                />
-            <TextBlock x:Name="pwTxtBlock" 
-                    Grid.Row="3" 
-                    Grid.Column="0"
-                    TextAlignment="Right" 
-                    Text="Password" 
-                    VerticalAlignment="Center" 
-                    Margin="0,9,10,9" 
-                    FontFamily="Segoe UI Semibold" 
-                    Foreground="#FFEAEAEA" FontSize="12" Height="17" 
-                />
             <TextBlock x:Name="sq1TxtBlock" 
                     Grid.Row="4" 
                     Grid.Column="0"
@@ -898,6 +872,32 @@
                     Grid.Column="0"
                     TextAlignment="Right" 
                     Text="Account Number" 
+                    VerticalAlignment="Center" 
+                    Margin="0,9,10,9" 
+                    FontFamily="Segoe UI Semibold" 
+                    Foreground="#FFEAEAEA" FontSize="12" Height="17" 
+                />
+            <Rectangle
+                Grid.ColumnSpan="2"
+                Grid.RowSpan="10"
+                RadiusX="10" RadiusY="10" 
+                Fill="#FF2A2B30" Margin="10,0,10,10" Grid.Row="1"
+                />
+            <TextBlock x:Name="usernameTxtBlock" 
+                    Grid.Row="2" 
+                    Grid.Column="0"
+                    TextAlignment="Right" 
+                    Text="Username" 
+                    VerticalAlignment="Center" 
+                    Margin="0,9,10,9" 
+                    FontFamily="Segoe UI Semibold" 
+                    Foreground="#FFEAEAEA" FontSize="12" Height="17" 
+                />
+            <TextBlock x:Name="pwTxtBlock" 
+                    Grid.Row="3" 
+                    Grid.Column="0"
+                    TextAlignment="Right" 
+                    Text="Password" 
                     VerticalAlignment="Center" 
                     Margin="0,9,10,9" 
                     FontFamily="Segoe UI Semibold" 
@@ -1057,37 +1057,100 @@
                     VerticalAlignment="Center" HorizontalAlignment="Left"
                     Grid.Row="7" Grid.Column="1"
                      />
-            <TextBox x:Name="codeTextbox"  
-                    Margin="10,1,0,2" 
-                    TextWrapping="Wrap" Text=""  
-                    Background="#FF25252B" Height="32" BorderBrush="#FF1D1E23" Width="162"  
-                    Foreground="#FFEAEAEA" 
-                    PlaceholderText="" 
-                    FontSize="12" FontStyle="Normal" 
-                    Style="{StaticResource InfoTextBoxStyle}" 
-                    BorderThickness="1" 
-                    VerticalAlignment="Center" HorizontalAlignment="Left"
-                    Grid.Row="8" Grid.Column="1"
-                     />
-            <TextBox x:Name="accNoTextbox"  
-                    Margin="10,1,0,2" 
-                    TextWrapping="Wrap" Text=""  
-                    Background="#FF25252B" Height="32" BorderBrush="#FF1D1E23" Width="162"  
-                    Foreground="#FFEAEAEA" 
-                    PlaceholderText="" 
-                    FontSize="12" FontStyle="Normal" 
-                    Style="{StaticResource InfoTextBoxStyle}" 
-                    BorderThickness="1" 
-                    VerticalAlignment="Center" HorizontalAlignment="Left"
-                    Grid.Row="9" Grid.Column="1"
-                     />
 
+            <TextBlock x:Name="sq1TxtBlock" 
+                    Grid.Row="4" 
+                    Grid.Column="0"
+                    TextAlignment="Right" 
+                    Text="Security Question 1" 
+                    VerticalAlignment="Center" 
+                    Margin="0,9,10,9" 
+                    FontFamily="Segoe UI Semibold" 
+                    Foreground="#FFEAEAEA" FontSize="12" Height="17" 
+                />
+            <TextBlock x:Name="sq2TxtBlock" 
+                    Grid.Row="6" 
+                    Grid.Column="0"
+                    TextAlignment="Right" 
+                    Text="Security Question 2" 
+                    VerticalAlignment="Center" 
+                    Margin="0,9,10,9" 
+                    FontFamily="Segoe UI Semibold" 
+                    Foreground="#FFEAEAEA" FontSize="12" Height="17" 
+                />
+            <TextBlock x:Name="codeTxtBlock" 
+                    Grid.Row="8" 
+                    Grid.Column="0"
+                    TextAlignment="Right" 
+                    Text="Code" 
+                    VerticalAlignment="Center" 
+                    Margin="0,9,10,9" 
+                    FontFamily="Segoe UI Semibold" 
+                    Foreground="#FFEAEAEA" FontSize="12" Height="17" 
+                />
+            <TextBlock x:Name="accNoTxtBlock" 
+                    Grid.Row="9" 
+                    Grid.Column="0"
+                    TextAlignment="Right" 
+                    Text="Account Number" 
+                    VerticalAlignment="Center" 
+                    Margin="0,9,10,9" 
+                    FontFamily="Segoe UI Semibold" 
+                    Foreground="#FFEAEAEA" FontSize="12" Height="17" 
+                />
+        </Grid>
+        <Grid Grid.RowSpan="11" x:Name="WalletInfoGrid" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock VerticalAlignment="Center" 
+                       Text="Card Number" 
+                       TextAlignment="Right" 
+                       Grid.Row="2" 
+                       x:Name="cardNoTxtBlock" 
+                       Margin="0,9,10,9" Height="17" 
+                       FontFamily="Segoe UI Semibold" 
+                       FontSize="12" Foreground="#FFEAEAEA" 
+                       Grid.Column="0"/>
+            <TextBlock VerticalAlignment="Center" 
+                       Text="Expiration Date" 
+                       TextAlignment="Right" 
+                       Grid.Row="3" 
+                       x:Name="expDateTxtBlock" 
+                       Margin="0,9,10,9" Height="17" 
+                       FontFamily="Segoe UI Semibold" FontSize="12" 
+                       Foreground="#FFEAEAEA" Grid.Column="0"/>
+            <TextBlock VerticalAlignment="Center" 
+                       Text="CVC" 
+                       TextAlignment="Right" 
+                       Grid.Row="4" 
+                       x:Name="cvcTxtBlock" 
+                       Margin="0,9,10,9" 
+                       Height="17" 
+                       FontFamily="Segoe UI Semibold" FontSize="12" 
+                       Foreground="#FFEAEAEA" Grid.Column="0"/>
         </Grid>
 
+    </Grid>
 
 
-        <!-- Titlebar-->
-        <Grid x:Name="titlebar" 
+
+    <!-- Titlebar-->
+    <Grid x:Name="titlebar" 
               VerticalAlignment="Top" 
               Background="#FF333541" 
               Height="43" 
@@ -1096,28 +1159,28 @@
               Grid.ColumnSpan="2" 
               BorderThickness="0,0,0,3" 
               BorderBrush="#4C000000"/>
-        <Grid x:Name="TitlebarGrid" 
-              HorizontalAlignment="Left" 
-              VerticalAlignment="Top" 
-              Margin="0,-40,0,0" 
-              Height="40" 
-              Width="435" 
-              Grid.ColumnSpan="2">
-            <Button x:Name="HamburgerButton" Width="38" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" FontSize="16" Click="HamburgerButton_Click" Background="{x:Null}" Height="40" BorderThickness="0" Foreground="#FFDADADA"/>
-            <TextBox x:Name="searchBox"  
-                     Margin="38,5,0,0" 
-                     TextWrapping="Wrap" Text=""  
-                     Background="#FF2B2B33" Height="30" BorderBrush="#FF1D1E23" Width="212"  
-                     Foreground="White" 
-                     PlaceholderText="Search accounts" 
-                     FontSize="14" FontStyle="Italic" 
-                     Style="{StaticResource SearchboxStyle}" 
-                     BorderThickness="1" 
-                     VerticalAlignment="Top" HorizontalAlignment="Left"
-                     GotFocus="searchBox_GotFocus"
-                     />
-        </Grid>
-        <Button x:Name="addButton" 
+    <Grid x:Name="TitlebarGrid" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Margin="0,-40,0,0" 
+                Height="40" 
+                Width="435" 
+                Grid.ColumnSpan="2">
+        <Button x:Name="HamburgerButton" Width="38" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" FontSize="16" Click="HamburgerButton_Click" Background="{x:Null}" Height="40" BorderThickness="0" Foreground="#FFDADADA"/>
+        <TextBox x:Name="searchBox"  
+                        Margin="38,5,0,0" 
+                        TextWrapping="Wrap" Text=""  
+                        Background="#FF2B2B33" Height="30" BorderBrush="#FF1D1E23" Width="212"  
+                        Foreground="White" 
+                        PlaceholderText="Search accounts" 
+                        FontSize="14" FontStyle="Italic" 
+                        Style="{StaticResource SearchboxStyle}" 
+                        BorderThickness="1" 
+                        VerticalAlignment="Top" HorizontalAlignment="Left"
+                        GotFocus="searchBox_GotFocus"
+                        />
+    </Grid>
+    <Button x:Name="addButton" 
                     Content="&#xE109;" 
                     BorderThickness="0" 
                     Width="38" Height="38" 
@@ -1125,7 +1188,7 @@
                     Margin="17,5,0,0" VerticalAlignment="Top"
                     Click="addButton_Click"
                     Foreground="#FFDADADA" Background="{x:Null}" ToolTipService.ToolTip="Add" FontSize="20" Grid.Column="1"/>
-        <Button x:Name="settingsButton" 
+    <Button x:Name="settingsButton" 
                     Content="&#xE115;" 
                     BorderThickness="0" 
                     Width="38" Height="38" 
@@ -1136,6 +1199,4 @@
                     Margin="55,5,0,0" 
                     FontSize="20" Grid.Column="1"/>
     </Grid>
-
-
 </Page>
