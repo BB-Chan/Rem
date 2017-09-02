@@ -42,6 +42,9 @@ namespace Rem
             SQLitePlatformWinRT(), Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "RemAccounts.sqlite"));
         
 
+
+        int _id { get; set; }
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -60,7 +63,7 @@ namespace Rem
             titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
 
             //create array for info textboxes
-            TextBox[] infoBoxArr = { usernameTextbox, passwordTextbox, accountTextbox, sq1_Textbox, sq2_Textbox, sqa1_Textbox, sqa2_Textbox, accNoTextbox, codeTextbox };
+            TextBox[] infoBoxArr = { usernameTextbox, cvcTextbox, passwordTextbox, accountTextbox, sq1_Textbox, sq2_Textbox, sqa1_Textbox, sqa2_Textbox, accNoTextbox, codeTextbox };
 
             //loop through array to manipulate properties
             for (int i = 0; i < infoBoxArr.Length; i++)
@@ -73,16 +76,20 @@ namespace Rem
             conn.CreateTable<Passwords>();
             conn.CreateTable<Mail>();
             conn.CreateTable<Wallet>();
-
             //select first category
             CategoryListbox.SelectedIndex = 0;
 
+            
+
         }
 
+
+        
         private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
+
 
 
         //Add & Settings click events
@@ -94,10 +101,8 @@ namespace Rem
             createButton.Visibility = Visibility.Visible;
             cancelButton.Visibility = Visibility.Visible;
 
-
-
             //Create array for info textboxes
-            TextBox[] infoBoxArr = { usernameTextbox, accountTextbox, passwordTextbox, sq1_Textbox, sq2_Textbox, sqa1_Textbox, sqa2_Textbox, accNoTextbox, codeTextbox };
+            TextBox[] infoBoxArr = { usernameTextbox, cvcTextbox, accountTextbox, passwordTextbox, sq1_Textbox, sq2_Textbox, sqa1_Textbox, sqa2_Textbox, accNoTextbox, codeTextbox };
 
             //Loop through array to manipulate properties
             for (int i = 0; i < infoBoxArr.Length; i++)
@@ -107,10 +112,14 @@ namespace Rem
             }
         }
 
+
+
         private void settingsBtn_Click(object sender, RoutedEventArgs e)
         {
             
         }
+
+
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
         {
@@ -118,11 +127,12 @@ namespace Rem
         }
 
 
+
         ///Category change
         private void CategoryListbox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int lbindex = 0;
-
+            
             //Clear lbitems
             while (AccountListBox.Items.Count > 0)
             {
@@ -132,7 +142,6 @@ namespace Rem
                 if (lbindex == 0)
                 {
                     NewPassword.Remove((Passwords)AccountListBox.Items[0]);
-                    
                 }
                 //mail
                 else if (lbindex == 1)
@@ -169,6 +178,7 @@ namespace Rem
                         Accnumber = item.Accnumber
                     });
                 }
+                PWUI();
             }
             //mail
             else if (CategoryListbox.SelectedIndex == 1)
@@ -176,13 +186,14 @@ namespace Rem
                 var query = conn.Table<Mail>();
                 foreach (var item in query)
                 {
-                    NewMail.Add(new Mail
+                    NewPassword.Add(new Passwords
                     {
                         Account = item.Account,
                         Username = item.Username,
                         Password = item.Password
                     });
                 }
+                MailUI();
             }
             //wallet
             else if (CategoryListbox.SelectedIndex == 2)
@@ -190,14 +201,13 @@ namespace Rem
                 var query = conn.Table<Wallet>();
                 foreach (var item in query)
                 {
-                    NewWallet.Add(new Wallet
+                    NewPassword.Add(new Passwords
                     {
                         Account = item.Account,
-                        CardNo = item.CardNo,
-                        ExpDate = item.ExpDate,
-                        CVC = item.CVC
+                        Username = item.CardNo
                     });
                 }
+                WalletUI();
             }
         }
 
@@ -209,8 +219,6 @@ namespace Rem
             searchBox.SelectionLength = searchBox.Text.Length;
         }
 
-
-
         private void AccountListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //Show & hide different controls
@@ -220,14 +228,29 @@ namespace Rem
             cancelButton.Visibility = Visibility.Collapsed;
 
             //Create array for info textboxes
-            TextBox [] infoBoxArr = { usernameTextbox, passwordTextbox, accountTextbox, sq1_Textbox, sq2_Textbox, sqa1_Textbox, sqa2_Textbox, accNoTextbox, codeTextbox };
+            TextBox [] infoBoxArr = { usernameTextbox, cvcTextbox, passwordTextbox, accountTextbox, sq1_Textbox, sq2_Textbox, sqa1_Textbox, sqa2_Textbox, accNoTextbox, codeTextbox };
 
             //Loop through array to manipulate properties
             for (int i = 0; i < infoBoxArr.Length; i++)
             {
                 infoBoxArr[i].IsReadOnly = true;
                 infoBoxArr[i].IsEnabled = false;
-                
+            }
+
+            //passwords
+            if (CategoryListbox.SelectedIndex == 0)
+            {
+                //accounttext = 
+            }
+            //mail
+            else if (CategoryListbox.SelectedIndex == 1)
+            {
+
+            }
+            //wallet
+            else if (CategoryListbox.SelectedIndex == 2)
+            {
+
             }
         }
 
@@ -236,14 +259,18 @@ namespace Rem
         private void createButton_Click(object sender, RoutedEventArgs e)
         {
             //Create arr for infoboxes
-            TextBox[] infoBoxArr = { usernameTextbox, passwordTextbox, accountTextbox, sq1_Textbox, sq2_Textbox, sqa1_Textbox, sqa2_Textbox, accNoTextbox, codeTextbox };
+            TextBox[] infoBoxArr = { usernameTextbox, cvcTextbox, passwordTextbox, accountTextbox, sq1_Textbox, sq2_Textbox, sqa1_Textbox, sqa2_Textbox, accNoTextbox, codeTextbox };
 
             //Set account & username text to textbox text
             pw.Account = accountTextbox.Text;
             pw.Username = usernameTextbox.Text;
+            mail.Account = accountTextbox.Text;
+            mail.Username = usernameTextbox.Text;
+            wallet.Account = accountTextbox.Text;
+            wallet.CardNo = usernameTextbox.Text;
 
             //passwords
-            if(CategoryListbox.SelectedIndex == 0)
+            if (CategoryListbox.SelectedIndex == 0)
             {
                 AddPWAcc();
             }
@@ -261,18 +288,33 @@ namespace Rem
             //Select last created listboxitem   
             AccountListBox.SelectedIndex = AccountListBox.Items.Count - 1;
 
+            /*
+            //ID counter setup
+            if (AccountListBox.SelectedIndex > 0)
+            {
+                _id = AccountListBox.SelectedIndex + 1;
+            }
+            else
+            {
+                _id = 0;
+            }
+            */
+
             //Clear textboxes
             for (int i =0; i < infoBoxArr.Length; i++)
             {
                 infoBoxArr[i].Text = "";
             }
+
+            //Sort account list alphabetically
         }
 
 
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
-            TextBox[] infoBoxArr = { usernameTextbox, passwordTextbox, accountTextbox, sq1_Textbox, sq2_Textbox, sqa1_Textbox, sqa2_Textbox, accNoTextbox, codeTextbox };
+            //textbox array
+            TextBox[] infoBoxArr = { usernameTextbox, cvcTextbox, passwordTextbox, accountTextbox, sq1_Textbox, sq2_Textbox, sqa1_Textbox, sqa2_Textbox, accNoTextbox, codeTextbox };
 
             //Clear textboxes
             for (int i = 0; i < infoBoxArr.Length; i++)
@@ -303,7 +345,7 @@ namespace Rem
 
         private void editButton_Click(object sender, RoutedEventArgs e)
         {
-            TextBox[] infoBoxArr = { usernameTextbox, passwordTextbox, accountTextbox, sq1_Textbox, sq2_Textbox, sqa1_Textbox, sqa2_Textbox, accNoTextbox, codeTextbox };
+            TextBox[] infoBoxArr = { usernameTextbox, cvcTextbox, passwordTextbox, accountTextbox, sq1_Textbox, sq2_Textbox, sqa1_Textbox, sqa2_Textbox, accNoTextbox, codeTextbox };
 
             //Show & hide different controls
             deleteButton.Visibility = Visibility.Collapsed;
@@ -323,7 +365,7 @@ namespace Rem
 
         private void acceptButton_Click(object sender, RoutedEventArgs e)
         {
-            TextBox[] infoBoxArr = { usernameTextbox, passwordTextbox, accountTextbox, sq1_Textbox, sq2_Textbox, sqa1_Textbox, sqa2_Textbox, accNoTextbox, codeTextbox };
+            TextBox[] infoBoxArr = { usernameTextbox, cvcTextbox, passwordTextbox, accountTextbox, sq1_Textbox, sq2_Textbox, sqa1_Textbox, sqa2_Textbox, accNoTextbox, codeTextbox };
 
             //Show & hide different controls
             deleteButton.Visibility = Visibility.Visible;
@@ -360,21 +402,25 @@ namespace Rem
             //Add curr text in texboxes to new row in SQL db
             conn.Insert(new Passwords()
             {
-                Account = pw.Account,
-                Username = pw.Username,
-                Password = pw.Password,
-                SQ1 = pw.SQ1,
-                SQA1 = pw.SQA1,
-                SQ2 = pw.SQ2,
-                SQA2 = pw.SQA2,
-                Code = pw.Code,
-                Accnumber = pw.Accnumber,
+                Account = accountTextbox.Text,
+                Username = usernameTextbox.Text,
+                Password = passwordTextbox.Text,
+                SQ1 = sq1_Textbox.Text,
+                SQA1 = sqa1_Textbox.Text,
+                SQ2 = sq2_Textbox.Text,
+                SQA2 = sqa2_Textbox.Text,
+                Code = codeTextbox.Text,
+                Accnumber = accNoTextbox.Text
             });
         }
         public void AddMailAcc()
         {
-            NewMail.Add(new Mail
+            pw.Account = accountTextbox.Text;
+            pw.Username = usernameTextbox.Text;
+
+            NewPassword.Add(new Passwords
             {
+
                 Account = accountTextbox.Text,
                 Username = usernameTextbox.Text,
                 Password = passwordTextbox.Text
@@ -383,26 +429,31 @@ namespace Rem
             //Add curr text in texboxes to new row in SQL db
             conn.Insert(new Mail()
             {
-                Account = mail.Account,
-                Username = mail.Username,
-                Password = mail.Password
+                Account = accountTextbox.Text,
+                Username = usernameTextbox.Text,
+                Password = passwordTextbox.Text
             });
         }
         public void AddWalletAcc()
         {
+            pw.Account = accountTextbox.Text;
+            pw.Username = usernameTextbox.Text;
+
             NewWallet.Add(new Wallet
             {
                 Account = accountTextbox.Text,
-                
+                CardNo = usernameTextbox.Text,
+                CVC = cvcTextbox.Text,
+                ExpDate = passwordTextbox.Text
             });
 
             //Add curr text in texboxes to new row in SQL db
             conn.Insert(new Wallet()
             {
-                Account = wallet.Account,
-                CardNo = wallet.CardNo,
-                ExpDate = wallet.ExpDate,
-                CVC = wallet.CVC
+                Account = accountTextbox.Text,
+                CardNo = usernameTextbox.Text,
+                CVC = cvcTextbox.Text,
+                ExpDate = passwordTextbox.Text
             });
         }
 
@@ -410,20 +461,35 @@ namespace Rem
         public void PWUI()
         {
             //show controls
-
+            PWGrid.Visibility = Visibility.Visible;
+            usernameTextbox.Visibility = Visibility.Visible;
+            usernameTxtBlock.Visibility = Visibility.Visible;
+            passwordTextbox.Visibility = Visibility.Visible;
+            pwTxtBlock.Visibility = Visibility.Visible;
             //hide controls
+            WalletGrid.Visibility = Visibility.Collapsed;
         }
         public void MailUI()
         {
             //show controls
-
+            usernameTextbox.Visibility = Visibility.Visible;
+            usernameTxtBlock.Visibility = Visibility.Visible;
+            passwordTextbox.Visibility = Visibility.Visible;
+            pwTxtBlock.Visibility = Visibility.Visible;
             //hide controls
+            PWGrid.Visibility = Visibility.Collapsed;
+            WalletGrid.Visibility = Visibility.Collapsed;
         }
         public void WalletUI()
         {
             //show controls
+            WalletGrid.Visibility = Visibility.Visible;
+            usernameTextbox.Visibility = Visibility.Visible;
 
             //hide controls
+            PWGrid.Visibility = Visibility.Collapsed;
+            usernameTxtBlock.Visibility = Visibility.Collapsed;
+            pwTxtBlock.Visibility = Visibility.Collapsed;
         }
     }
 }

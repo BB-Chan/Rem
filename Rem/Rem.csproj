@@ -108,23 +108,6 @@
     <None Include="Rem_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\buttons\add_hover.png" />
-    <Content Include="Assets\buttons\add_press.png" />
-    <Content Include="Assets\buttons\add_release.png" />
-    <Content Include="Assets\buttons\settings_hover.png" />
-    <Content Include="Assets\buttons\settings_press.png" />
-    <Content Include="Assets\buttons\settings_release.png" />
-    <Content Include="Assets\icons dark theme\bank.png" />
-    <Content Include="Assets\icons dark theme\bank2.png" />
-    <Content Include="Assets\icons dark theme\cards.png" />
-    <Content Include="Assets\icons dark theme\edit.png" />
-    <Content Include="Assets\icons dark theme\mail.png" />
-    <Content Include="Assets\icons dark theme\password.png" />
-    <Content Include="Assets\icons dark theme\purse.png" />
-    <Content Include="Assets\icons dark theme\settings.png" />
-    <Content Include="Assets\icons dark theme\trash.png" />
-    <Content Include="Assets\icons dark theme\utilities.png" />
-    <Content Include="Assets\icons dark theme\wallet.png" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
