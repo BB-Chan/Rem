@@ -40,9 +40,6 @@ namespace Rem
         //SQL setup
         SQLite.Net.SQLiteConnection conn = new SQLite.Net.SQLiteConnection(new SQLite.Net.Platform.WinRT.
             SQLitePlatformWinRT(), Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "RemAccounts.sqlite"));
-        
-
-
         int _id { get; set; }
 
         public MainPage()
@@ -56,7 +53,6 @@ namespace Rem
 
             //set cur titlebar as var titleBar
             var titleBar = ApplicationView.GetForCurrentView().TitleBar;
-
             //Titlebar colors
             titleBar.ButtonBackgroundColor = Colors.Transparent;
             titleBar.ButtonForegroundColor = Colors.White;
@@ -132,7 +128,10 @@ namespace Rem
         private void CategoryListbox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int lbindex = 0;
-            
+
+            //Hide accept & cancel button if they were previously visible
+            hideInfoBtns();
+
             //Clear lbitems
             while (AccountListBox.Items.Count > 0)
             {
@@ -162,7 +161,10 @@ namespace Rem
             //passwords
             if (CategoryListbox.SelectedIndex == 0)
             {
-                var query = conn.Table<Passwords>();
+                //load lbitems alphabetically
+                var query = conn.Query<Passwords>(
+                "SELECT * FROM Passwords ORDER BY Passwords.Account ASC;");
+
                 foreach (var item in query)
                 {
                     NewPassword.Add(new Passwords
@@ -175,15 +177,19 @@ namespace Rem
                         SQ2 = item.SQ2,
                         SQA2 = item.SQA2,
                         Code = item.Code,
-                        Accnumber = item.Accnumber
+                        Accnumber = item.Accnumber,
                     });
                 }
+
+
                 PWUI();
             }
             //mail
             else if (CategoryListbox.SelectedIndex == 1)
             {
-                var query = conn.Table<Mail>();
+                var query = conn.Query<Mail>(
+                "SELECT * FROM Mail ORDER BY Mail.Account ASC;");
+
                 foreach (var item in query)
                 {
                     NewPassword.Add(new Passwords
@@ -193,12 +199,14 @@ namespace Rem
                         Password = item.Password
                     });
                 }
+                
                 MailUI();
             }
             //wallet
             else if (CategoryListbox.SelectedIndex == 2)
             {
-                var query = conn.Table<Wallet>();
+                var query = conn.Query<Wallet>(
+                "SELECT * FROM Wallet ORDER BY Wallet.Account ASC;");
                 foreach (var item in query)
                 {
                     NewPassword.Add(new Passwords
@@ -240,17 +248,65 @@ namespace Rem
             //passwords
             if (CategoryListbox.SelectedIndex == 0)
             {
-                //accounttext = 
+
+                var query = conn.Query<Passwords>(
+                    "SELECT * FROM Passwords ORDER BY Passwords.Account ASC;");
+
+                int counter = 0;
+                foreach (var item in query)
+                {
+                    if (counter == AccountListBox.SelectedIndex)
+                    {
+                        accountTextbox.Text = item.Account;
+                        usernameTextbox.Text = item.Username;
+                        passwordTextbox.Text = item.Password;
+                        sq1_Textbox.Text = item.SQ1;
+                        sqa1_Textbox.Text = item.SQA1;
+                        sq2_Textbox.Text = item.SQ2;
+                        sqa2_Textbox.Text = item.SQA2;
+                        codeTextbox.Text = item.Code;
+                        accNoTextbox.Text = item.Accnumber;
+                    }
+                    counter++;
+                }
+                
             }
             //mail
             else if (CategoryListbox.SelectedIndex == 1)
             {
+                var query = conn.Query<Mail>(
+                    "SELECT * FROM Mail ORDER BY Mail.Account ASC;");
 
+                int counter = 0;
+                foreach (var item in query)
+                {
+                    if (counter == AccountListBox.SelectedIndex)
+                    {
+                        accountTextbox.Text = item.Account;
+                        usernameTextbox.Text = item.Username;
+                        passwordTextbox.Text = item.Password;
+                    }
+                    counter++;
+                }
             }
             //wallet
             else if (CategoryListbox.SelectedIndex == 2)
             {
+                var query = conn.Query<Wallet>(
+                    "SELECT * FROM Wallet ORDER BY Wallet.Account ASC;");
 
+                int counter = 0;
+                foreach (var item in query)
+                {
+                    if (counter == AccountListBox.SelectedIndex)
+                    {
+                        accountTextbox.Text = item.Account;
+                        passwordTextbox.Text = item.ExpDate;
+                        usernameTextbox.Text = item.CardNo;
+                        cvcTextbox.Text = item.CVC;
+                    }
+                    counter++;
+                }
             }
         }
 
@@ -288,18 +344,6 @@ namespace Rem
             //Select last created listboxitem   
             AccountListBox.SelectedIndex = AccountListBox.Items.Count - 1;
 
-            /*
-            //ID counter setup
-            if (AccountListBox.SelectedIndex > 0)
-            {
-                _id = AccountListBox.SelectedIndex + 1;
-            }
-            else
-            {
-                _id = 0;
-            }
-            */
-
             //Clear textboxes
             for (int i =0; i < infoBoxArr.Length; i++)
             {
@@ -309,7 +353,7 @@ namespace Rem
             //Sort account list alphabetically
         }
 
-
+        
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
@@ -327,16 +371,32 @@ namespace Rem
             if (CategoryListbox.SelectedIndex == 0)
             {
                 NewPassword.Remove((Passwords)AccountListBox.SelectedItem);
+
+                var query = conn.Query<Passwords>(
+                    "SELECT * FROM Passwords ORDER BY Passwords.Account ASC;");
+
+                int counter = 0;
+
+                
+                foreach (var item in query)
+                {
+                    if (counter == AccountListBox.SelectedIndex)
+                    {
+                        conn.Delete<Passwords>(
+                            "DELETE FROM Passwords WHERE Passwords.Account = " + item.Account + ";");
+                    }
+                    counter++;
+                }
             }
             //mail
             else if (CategoryListbox.SelectedIndex == 1)
             {
-                NewMail.Remove((Mail)AccountListBox.SelectedItem);
+                NewPassword.Remove((Passwords)AccountListBox.SelectedItem);
             }
             //wallet
             else if (CategoryListbox.SelectedIndex == 2)
             {
-                NewWallet.Remove((Wallet)AccountListBox.SelectedItem);
+                NewPassword.Remove((Passwords)AccountListBox.SelectedItem);
             }
             
         }
@@ -381,7 +441,11 @@ namespace Rem
             }
         }
 
-
+        public void hideInfoBtns()
+        {
+            acceptButton.Visibility = Visibility.Collapsed;
+            cancelButton.Visibility = Visibility.Collapsed;
+        }
 
         ///Add new account methods
         public void AddPWAcc()
@@ -398,6 +462,8 @@ namespace Rem
                 Code = codeTextbox.Text,
                 Accnumber = accNoTextbox.Text,
             });
+
+            
 
             //Add curr text in texboxes to new row in SQL db
             conn.Insert(new Passwords()
@@ -420,11 +486,11 @@ namespace Rem
 
             NewPassword.Add(new Passwords
             {
-
                 Account = accountTextbox.Text,
                 Username = usernameTextbox.Text,
                 Password = passwordTextbox.Text
             });
+
 
             //Add curr text in texboxes to new row in SQL db
             conn.Insert(new Mail()
@@ -439,9 +505,10 @@ namespace Rem
             pw.Account = accountTextbox.Text;
             pw.Username = usernameTextbox.Text;
 
-            NewWallet.Add(new Wallet
+            NewPassword.Add(new Passwords
             {
                 Account = accountTextbox.Text,
+                Username = usernameTextbox.Text,
                 CardNo = usernameTextbox.Text,
                 CVC = cvcTextbox.Text,
                 ExpDate = passwordTextbox.Text
@@ -490,6 +557,24 @@ namespace Rem
             PWGrid.Visibility = Visibility.Collapsed;
             usernameTxtBlock.Visibility = Visibility.Collapsed;
             pwTxtBlock.Visibility = Visibility.Collapsed;
+        }
+
+        private void cancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            TextBox[] infoBoxArr = { usernameTextbox, cvcTextbox, passwordTextbox, accountTextbox, sq1_Textbox, sq2_Textbox, sqa1_Textbox, sqa2_Textbox, accNoTextbox, codeTextbox };
+
+            //Show & hide different controls
+            deleteButton.Visibility = Visibility.Visible;
+            editButton.Visibility = Visibility.Visible;
+            cancelButton.Visibility = Visibility.Collapsed;
+            acceptButton.Visibility = Visibility.Collapsed;
+
+            //Loop through array to manipulate properties
+            for (int i = 0; i < infoBoxArr.Length; i++)
+            {
+                infoBoxArr[i].IsReadOnly = true;
+                infoBoxArr[i].IsEnabled = false;
+            }
         }
     }
 }

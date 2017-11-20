@@ -23,6 +23,11 @@ namespace Rem.Models
         public string Code { get; set; }
         public string Accnumber { get; set; }
 
+        public string ExpDate { get; set; }
+        public string CVC { get; set; }
+        public string CardNo { get; set; }
+
+
         public static explicit operator Passwords(ItemCollection v)
         {
             throw new NotImplementedException();

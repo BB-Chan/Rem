@@ -2,6 +2,7 @@
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.3",
     "SQLite.Net-PCL": "3.1.1",
+    "SQLite.WinRT": "2016.11.30.2",
     "SQLitePCL": "3.8.7.2"
   },
   "frameworks": {
