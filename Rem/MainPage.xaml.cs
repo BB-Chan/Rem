@@ -105,6 +105,7 @@ namespace Rem
             {
                 infoBoxArr[i].IsReadOnly = false;
                 infoBoxArr[i].IsEnabled = true;
+                infoBoxArr[i].Text = "";
             }
         }
 
@@ -568,6 +569,7 @@ namespace Rem
             editButton.Visibility = Visibility.Visible;
             cancelButton.Visibility = Visibility.Collapsed;
             acceptButton.Visibility = Visibility.Collapsed;
+            createButton.Visibility = Visibility.Collapsed;
 
             //Loop through array to manipulate properties
             for (int i = 0; i < infoBoxArr.Length; i++)
